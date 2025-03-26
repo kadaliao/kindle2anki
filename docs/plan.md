@@ -53,6 +53,7 @@ Kindle2Anki 是一个网络应用，旨在帮助用户将电子书阅读笔记�
 - 文本分析和处理
   - NLTK/SpaCy 用于 NLP
   - Pandas 用于数据处理
+  - LLM (如 OpenAI API 或 Hugging Face 模型) 用于智能内容处理和优化
 - API 接口
   - RESTful API
   - OpenAPI/Swagger 文档
@@ -135,42 +136,6 @@ Kindle2Anki 是一个网络应用，旨在帮助用户将电子书阅读笔记�
 
 ## 开发环境设置
 
-### 后端环境
-```bash
-# Python 版本
-Python 3.11+
-
-# 主要依赖
-fastapi==0.109.0
-uvicorn==0.27.0
-python-multipart==0.0.6
-sqlalchemy==2.0.25
-alembic==1.13.1
-psycopg2-binary==2.9.9
-redis==5.0.1
-celery==5.3.6
-PyMuPDF==1.23.8
-ebooklib==0.18
-spacy==3.7.2
-nltk==3.8.1
-pandas==2.2.0
-```
-
-### 前端环境
-```bash
-# Node.js 版本
-Node.js 20.x LTS
-
-# 主要依赖
-next: 14.x
-react: 18.x
-typescript: 5.x
-tailwindcss: 3.x
-```
-
-### 开发工具
-- VS Code
-- Python 插件
-- ESLint
-- Prettier
-- Docker Desktop
+1. 使用 Docker Compose 配置开发环境
+2. 使用 Cursor IDE 作为开发工具
+3. 配置对应的 .cursorrules, .cursorignore 文件
