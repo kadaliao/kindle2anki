@@ -32,31 +32,58 @@ Kindle2Anki 是一个网络应用，旨在帮助用户将电子书阅读笔记�
 
 ## 技术架构
 
-### 前端
-- React.js + TypeScript
-- 文件上传组件
+### 前端 (Next.js)
+- TypeScript 作为开发语言
+- 使用 Next.js 13+ App Router
+- 文件上传组件 (使用 uppy 或 react-dropzone)
 - 笔记预览和编辑界面
 - 卡片预览功能
+- Tailwind CSS 用于样式设计
 - 响应式设计
 
-### 后端
-- Node.js/Python
+### 后端 (FastAPI)
+- Python 3.11+
+- FastAPI 框架
+- 异步处理
+- WebSocket 支持（用于长时间运行的任务）
 - 文件处理服务
+  - PyMuPDF (用于 PDF)
+  - EbookLib (用于 EPUB)
+  - Mobi (用于 Kindle 格式)
 - 文本分析和处理
+  - NLTK/SpaCy 用于 NLP
+  - Pandas 用于数据处理
 - API 接口
+  - RESTful API
+  - OpenAPI/Swagger 文档
+- 后台任务队列 (Celery)
 
 ### 数据存储
-- 用户数据
-- 电子书元数据
-- 笔记数据
-- 生成的卡片数据
+- PostgreSQL
+  - 用户数据
+  - 电子书元数据
+  - 笔记数据
+  - 生成的卡片数据
+- Redis
+  - 缓存
+  - 会话管理
+  - 任务队列
+- MinIO/S3
+  - 文件存储
 
 ## 开发路线图
 
 ### 第一阶段：基础功能
-1. 搭建基本项目框架
+1. 搭建项目框架
+   - 设置 FastAPI 项目结构
+   - 配置 Next.js 项目
+   - 设置数据库和存储服务
 2. 实现文件上传功能
+   - 前端上传界面
+   - 后端文件处理
 3. 开发基本的文件解析功能
+   - PDF 解析
+   - Kindle 笔记解析
 4. 实现简单的笔记提取
 
 ### 第二阶段：核心功能
@@ -74,10 +101,20 @@ Kindle2Anki 是一个网络应用，旨在帮助用户将电子书阅读笔记�
 ## 技术难点
 
 1. 不同格式电子书的解析
+   - PDF 布局分析
+   - EPUB 结构提取
+   - Mobi 格式处理
 2. 笔记与原文的精确匹配
+   - 文本相似度算法
+   - 上下文分析
 3. 智能分割和合并笔记
+   - NLP 处理
+   - 语义分析
 4. 生成高质量的问答对
 5. 处理大文件的性能优化
+   - 流式处理
+   - 异步操作
+   - 分块处理
 
 ## 后续功能规划
 
@@ -95,3 +132,45 @@ Kindle2Anki 是一个网络应用，旨在帮助用户将电子书阅读笔记�
 3. 系统性能优化
 4. 错误处理机制
 5. 用户隐私保护
+
+## 开发环境设置
+
+### 后端环境
+```bash
+# Python 版本
+Python 3.11+
+
+# 主要依赖
+fastapi==0.109.0
+uvicorn==0.27.0
+python-multipart==0.0.6
+sqlalchemy==2.0.25
+alembic==1.13.1
+psycopg2-binary==2.9.9
+redis==5.0.1
+celery==5.3.6
+PyMuPDF==1.23.8
+ebooklib==0.18
+spacy==3.7.2
+nltk==3.8.1
+pandas==2.2.0
+```
+
+### 前端环境
+```bash
+# Node.js 版本
+Node.js 20.x LTS
+
+# 主要依赖
+next: 14.x
+react: 18.x
+typescript: 5.x
+tailwindcss: 3.x
+```
+
+### 开发工具
+- VS Code
+- Python 插件
+- ESLint
+- Prettier
+- Docker Desktop
